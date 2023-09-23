@@ -4,7 +4,6 @@ import { ListItem, ListItemText } from "@mui/material";
 import React from "react";
 
 export default function MessageItem({ user, text, isUser }) {
-
 	return (
 		<ListItem
 			sx={{
@@ -18,7 +17,11 @@ export default function MessageItem({ user, text, isUser }) {
 			<ListItemIcon sx={{ minWidth: 2 }}>
 				<Avatar
 					alt="Profile Pic"
-					src="https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg"
+					src={
+						isUser
+							? "https://c.ndtvimg.com/2022-05/mbbokrb8_disha_625x300_12_May_22.jpg"
+							: "https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg"
+					}
 				/>
 			</ListItemIcon>
 			<ListItemText

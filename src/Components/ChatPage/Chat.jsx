@@ -16,9 +16,9 @@ export default function Chat() {
 	const [loading, setLoading] = useState(false);
 	const [messages, setMessages] = useState([
 		{
-			text: "hemlo",
-			user: "User",
-			isUser: true,
+			text: "Hemlo, how can I help you!?",
+			user: "Chatbot",
+			isUser: false,
 		},
 	]);
 	const { drawerWidth, prefersDarkMode } = useContext(AppContext);
@@ -29,11 +29,16 @@ export default function Chat() {
 
 		const newMessage = {
 			text: inputRef.current.value,
-			user: "User",
+			user: "Disha",
+			isUser: true,
+		};
+		const newChatbotMessage = {
+			text: inputRef.current.value,
+			user: "ChatBot",
 			isUser: false,
 		};
 
-		setMessages([...messages, newMessage]);
+		setMessages([...messages, newMessage, newChatbotMessage]);
 		inputRef.current.value = "";
 		inputRef.current.focus();
 		setLoading(true);

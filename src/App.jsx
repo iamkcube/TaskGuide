@@ -1,10 +1,10 @@
-import React from "react";
+import { Box, CssBaseline } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import React, { createContext } from "react";
 import "./App.css";
 import Chat from "./Components/Chat";
-import { Box } from "@mui/material";
 import Sidebar from "./Components/Sidebar";
-import { CssBaseline } from "@mui/material";
+import Topbar from "./Components/Topbar";
 
 const theme = createTheme({
 	palette: {
@@ -12,7 +12,7 @@ const theme = createTheme({
 			main: "#6977bc",
 			contrastText: "#ffffff",
 		},
-		mode: 'dark',
+		// mode: "dark",
 	},
 	typography: {
 		fontFamily: [
@@ -31,16 +31,46 @@ const theme = createTheme({
 	},
 });
 
+const drawerWidth = 240;
+export const AppContext = createContext(null);
+
 function App() {
+	const [mobileOpen, setMobileOpen] = React.useState(false);
+
+	const handleDrawerToggle = () => {
+		setMobileOpen(!mobileOpen);
+	};
+
+	const appItems = {
+		drawerWidth,
+		mobileOpen,
+		handleDrawerToggle,
+	};
+
 	return (
 		<ThemeProvider theme={theme}>
-			<CssBaseline />
-
-			<h1>TaskGuide</h1>
-			<Box sx={{ display: "grid", gridTemplateColumns:"auto 1fr" }}>
-				<Sidebar />
-				<Chat />
-			</Box>
+			<AppContext.Provider value={appItems}>
+				<CssBaseline />
+				<Box
+					sx={{
+						display: "grid",
+						gridTemplateRows: "auto 1fr",
+						minHeight: "100svh",
+					}}
+				>
+					<Topbar />
+					<Box
+						sx={{
+							display: "grid",
+							gridTemplateColumns: "auto 1fr",
+							// minHeight: "100svh",
+						}}
+					>
+						<Sidebar />
+						<Chat />
+					</Box>
+				</Box>
+			</AppContext.Provider>
 		</ThemeProvider>
 	);
 }

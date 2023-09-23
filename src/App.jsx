@@ -13,6 +13,7 @@ export const AppContext = createContext(null);
 function App() {
 	// For Custom Theme
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
+	// const prefersDarkMode = false;
 	const theme = createTheme({
 		palette: {
 			primary: {
@@ -57,7 +58,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<AppContext.Provider value={appItems}>
-				<BrowserRouter basename={process.env.PUBLIC_URL}>
+				<BrowserRouter>
 					<Routes>
 						<Route
 							path="/"

@@ -11,6 +11,7 @@ export default function ChatPage() {
 				display: "grid",
 				gridTemplateRows: "auto 1fr",
 				minHeight: "100svh",
+
 			}}
 		>
 			<Topbar />

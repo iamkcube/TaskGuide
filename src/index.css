@@ -1,7 +1,15 @@
 :root
 {
-	--accent-color: #6977bc;
-	--accent-color-20: color-mix(in srgb, var(--accent-color) 20%, transparent 80%);
+	--accent-color: hsl(230, 38%, 57%);
+	--accent-color-prefix: 230, 38%, 57%;
+	--accent-color-20: hsla(230, 38%, 57%, 0.2);
+	--accent-color-50: hsla(230, 38%, 57%, 0.502);
+	--box-shadow: 0px 0px 2.2px hsla(var(--accent-color-prefix), 0.025),
+		0px 0px 5.3px hsla(var(--accent-color-prefix), 0.05),
+		0px 0px 10px hsla(var(--accent-color-prefix), 0.0625),
+		0px 0px 17.9px hsla(var(--accent-color-prefix), 0.075),
+		0px 0px 33.4px hsla(var(--accent-color-prefix), 0.1),
+		0px 0px 80px hsla(var(--accent-color-prefix), 0.20);
 }
 
 body

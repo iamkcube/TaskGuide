@@ -1,17 +1,16 @@
-import { Box, CssBaseline } from "@mui/material";
+import { CssBaseline, useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { createContext } from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Chat from "./Components/Chat";
-import Sidebar from "./Components/Sidebar";
-import Topbar from "./Components/Topbar";
-import { useMediaQuery } from "@mui/material";
+import ChatPage from "./Components/ChatPage";
+import Error404 from "./Components/Error404";
+import LandingPage from "./Components/LandingPage";
 
 const drawerWidth = 240;
 export const AppContext = createContext(null);
 
 function App() {
-	
 	// For Custom Theme
 	const prefersDarkMode = useMediaQuery("(prefers-color-scheme: dark)");
 	const theme = createTheme({
@@ -57,25 +56,22 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<AppContext.Provider value={appItems}>
-				<Box
-					sx={{
-						display: "grid",
-						gridTemplateRows: "auto 1fr",
-						minHeight: "100svh",
-					}}
-				>
-					<Topbar />
-					<Box
-						sx={{
-							display: "grid",
-							gridTemplateColumns: "auto 1fr",
-							// minHeight: "100svh",
-						}}
-					>
-						<Sidebar />
-						<Chat />
-					</Box>
-				</Box>
+				<BrowserRouter>
+					<Routes>
+						<Route
+							path="/"
+							element={<LandingPage />}
+						/>
+						<Route
+							path="/chat"
+							element={<ChatPage />}
+						/>
+						<Route
+							path="*"
+							element={<Error404 />}
+						/>
+					</Routes>
+				</BrowserRouter>
 			</AppContext.Provider>
 		</ThemeProvider>
 	);

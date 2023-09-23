@@ -9,7 +9,7 @@ export default function Topbar() {
 
 	return (
 		<AppBar
-			// elevation={0}
+			color="primary"
 			sx={{
 				width: { sm: `calc(100% - ${drawerWidth}px)` },
 				ml: { sm: `${drawerWidth}px` },

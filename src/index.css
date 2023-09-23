@@ -25,7 +25,7 @@ code
 *::after
 {
   box-sizing: border-box;
-  outline: 2px solid #00A10055;
+  /* outline: 2px solid #00A10055; */
 }
 
 /* Remove default margin */

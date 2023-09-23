@@ -64,23 +64,32 @@ const Chat = () => {
 					))}
 				</List>
 			</Box>
-			<Box>
+			<form
+				onSubmit={(e) => {
+					e.preventDefault();
+				}}
+			>
 				<TextField
-					label="Type a message"
+					placeholder="Type a message"
 					variant="outlined"
 					fullWidth
 					value={input}
 					onChange={handleInputChange}
 				/>
 				<Button
+					type="submit"
 					variant="contained"
 					color="primary"
 					onClick={handleSubmit}
 					fullWidth
+					sx={{
+						fontWeight: "bold",
+						fontSize: "1rem",
+					}}
 				>
 					Send
 				</Button>
-			</Box>
+			</form>
 		</Box>
 	);
 };

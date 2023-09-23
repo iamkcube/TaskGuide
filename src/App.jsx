@@ -3,7 +3,7 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import React, { createContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import ChatPage from "./Components/ChatPage";
+import ChatPage from "./Components/ChatPage/ChatPage";
 import Error404 from "./Components/Error404";
 import LandingPage from "./Components/LandingPage";
 
@@ -47,6 +47,7 @@ function App() {
 
 	// For useContext passing items
 	const appItems = {
+		prefersDarkMode,
 		drawerWidth,
 		mobileOpen,
 		handleDrawerToggle,
@@ -56,7 +57,7 @@ function App() {
 		<ThemeProvider theme={theme}>
 			<CssBaseline />
 			<AppContext.Provider value={appItems}>
-				<BrowserRouter>
+				<BrowserRouter basename={process.env.PUBLIC_URL}>
 					<Routes>
 						<Route
 							path="/"

@@ -40,7 +40,6 @@ export default function Chat() {
 		>
 			<Box
 				sx={{
-					overflowY: "scroll",
 					margin: "1em 1em",
 				}}
 			>

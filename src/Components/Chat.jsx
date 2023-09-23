@@ -1,17 +1,13 @@
-import {
-	Box,
-	Button,
-	Drawer,
-	IconButton,
-	List,
-	ListItem,
-	ListItemIcon,
-	ListItemSecondaryAction,
-	ListItemText,
-	Paper,
-	TextField,
-	Typography,
-} from "@mui/material";
+import
+	{
+		Box,
+		Button,
+		List,
+		ListItem,
+		ListItemText,
+		Paper,
+		TextField
+	} from "@mui/material";
 import React, { useState } from "react";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import SettingsIcon from "@mui/icons-material/Settings";
@@ -91,55 +87,6 @@ const Chat = () => {
 					</Button>
 				</Box>
 			</Box>
-
-			{/* User Details Drawer */}
-			<Drawer
-				anchor="right"
-				open={drawerOpen}
-				onClose={toggleDrawer}
-			>
-				<Box p={2}>
-					<Typography
-						variant="h6"
-						gutterBottom
-					>
-						User Options
-					</Typography>
-					<List>
-						{/* User Profile Option */}
-						<ListItem button>
-							<ListItemIcon>
-								{/* <AccountCircleIcon /> */}
-							</ListItemIcon>
-							<ListItemText primary="User Profile" />
-							<ListItemSecondaryAction>
-								<IconButton
-									edge="end"
-									onClick={null}
-								>
-									{/* Add user profile action here */}
-								</IconButton>
-							</ListItemSecondaryAction>
-						</ListItem>
-
-						{/* Settings Option */}
-						<ListItem button>
-							<ListItemIcon>
-								{/* <SettingsIcon /> */}
-							</ListItemIcon>
-							<ListItemText primary="Settings" />
-							<ListItemSecondaryAction>
-								<IconButton
-									edge="end"
-									onClick={null}
-								>
-									{/* Add settings action here */}
-								</IconButton>
-							</ListItemSecondaryAction>
-						</ListItem>
-					</List>
-				</Box>
-			</Drawer>
 		</Box>
 	);
 };

@@ -7,6 +7,7 @@ import {
 	Paper,
 	TextField,
 } from "@mui/material";
+import SendIcon from "@mui/icons-material/Send";
 import React, { useState } from "react";
 // import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import SettingsIcon from "@mui/icons-material/Settings";
@@ -68,6 +69,9 @@ const Chat = () => {
 				onSubmit={(e) => {
 					e.preventDefault();
 				}}
+				style={{
+					margin: "1em 1em",
+				}}
 			>
 				<TextField
 					placeholder="Type a message"
@@ -75,20 +79,24 @@ const Chat = () => {
 					fullWidth
 					value={input}
 					onChange={handleInputChange}
-				/>
-				<Button
-					type="submit"
-					variant="contained"
-					color="primary"
-					onClick={handleSubmit}
-					fullWidth
-					sx={{
-						fontWeight: "bold",
-						fontSize: "1rem",
+					InputProps={{
+						endAdornment: (
+							<Button
+								disableElevation
+								type="submit"
+								variant="contained"
+								color="primary"
+								onClick={handleSubmit}
+								endIcon={<SendIcon />}
+								sx={{
+									fontWeight: "bold",
+								}}
+							>
+								Send
+							</Button>
+						),
 					}}
-				>
-					Send
-				</Button>
+				/>
 			</form>
 		</Box>
 	);

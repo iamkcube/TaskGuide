@@ -10,7 +10,9 @@
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
     "deploy": "gh-pages -d build",
-    "bd": "vite build && npm run deploy"
+    "deployf": "firebase deploy --only hosting",
+    "bd": "vite build && npm run deploy",
+    "bdf": "vite build && firebase deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",

@@ -37,7 +37,7 @@ call npm run build
 timeout 1
 
 REM Deploy using Firebase
-call npm run deploy
+call npm run deployf
 timeout 1
 
 @REM REM Switch back to develop branch

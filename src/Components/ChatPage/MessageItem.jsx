@@ -20,7 +20,7 @@ export default function MessageItem({ user, text, isUser }) {
 					alt="Profile Pic"
 					src={
 						isUser
-							? "https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg"
+							? "https://c.ndtvimg.com/2022-05/mbbokrb8_disha_625x300_12_May_22.jpg"
 							: "https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg"
 					}
 					sx={{

@@ -51,7 +51,7 @@ export default function Chat() {
 		});
 		setLoading(false);
 
-		inputRef.current.focus();
+		Mobile && inputRef.current.focus();
 	};
 
 	useEffect(() => {

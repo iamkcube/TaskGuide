@@ -10,6 +10,7 @@ import {
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { AppContext } from "../../App";
 import MessageItem from "./MessageItem";
+import { getResponse } from "../../assets/js/getResponse";
 
 export default function Chat() {
 	const Mobile = useMediaQuery("(min-width:600px)");
@@ -24,27 +25,33 @@ export default function Chat() {
 	const { drawerWidth, prefersDarkMode } = useContext(AppContext);
 	const inputRef = useRef(null);
 
-	const handleSubmit = () => {
-		if (inputRef.current.value.trim() === "") return;
+	const handleSubmit = async () => {
+		const question = inputRef.current.value;
+		if (question.trim() === "") return;
 
+		setLoading(true);
 		const newMessage = {
-			text: inputRef.current.value,
+			text: question,
 			user: "Disha",
 			isUser: true,
 		};
+		setMessages((prevMessages) => {
+			return [...prevMessages, newMessage];
+		});
+		inputRef.current.value = "";
+
+		const chatResponse = await getResponse(question);
 		const newChatbotMessage = {
-			text: inputRef.current.value,
+			text: chatResponse.response,
 			user: "ChatBot",
 			isUser: false,
 		};
+		setMessages((prevMessages) => {
+			return [...prevMessages, newChatbotMessage];
+		});
+		setLoading(false);
 
-		setMessages([...messages, newMessage, newChatbotMessage]);
-		inputRef.current.value = "";
 		inputRef.current.focus();
-		setLoading(true);
-		setTimeout(() => {
-			setLoading(false);
-		}, 2000);
 	};
 
 	useEffect(() => {
@@ -137,16 +144,16 @@ export default function Chat() {
 									padding: loading ? 0 : "",
 									"&.Mui-disabled": {
 										background: "var(--accent-color-20)",
-									}
+									},
 								}}
-								>
+							>
 								{loading ? (
 									<CircularProgress
-									sx={{
+										sx={{
 											padding: "0.5rem",
 											height: "50%",
 											margin: 0,
-											color: "var(--accent-color)"
+											color: "var(--accent-color)",
 										}}
 									/>
 								) : (

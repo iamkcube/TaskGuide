@@ -40,33 +40,35 @@ export default function Chat() {
 		});
 		inputRef.current.value = "";
 
-		const chatResponse = await getResponse(question);
-		const newChatbotMessage = {
-			text: chatResponse.response,
-			user: "ChatBot",
-			isUser: false,
-		};
-		setMessages((prevMessages) => {
-			return [...prevMessages, newChatbotMessage];
-		});
-		setLoading(false);
-
-		Mobile && inputRef.current.focus();
+		try {
+			const chatResponse = await getResponse(question);
+			const newChatbotMessage = {
+				text: chatResponse.response,
+				user: "ChatBot",
+				isUser: false,
+			};
+			setMessages((prevMessages) => {
+				return [...prevMessages, newChatbotMessage];
+			});
+		} catch (error) {
+			const newChatbotMessage = {
+				text: `Try again! ${error}`,
+				user: "ChatBot",
+				isUser: false,
+			};
+			setMessages((prevMessages) => {
+				return [...prevMessages, newChatbotMessage];
+			});
+		} finally {
+			setLoading(false);
+			Mobile && inputRef.current.focus();
+		}
 	};
 
 	useEffect(() => {
-		// window.scrollTo({
-		// 	top: document.body.scrollHeight,
-		// 	behavior: "smooth", // Use 'auto' for instant scrolling
-		// });
 		const targetElement = document.querySelector(
 			".message-item:last-child"
 		);
-		console.log(
-			"🚀 ~ file: Chat.jsx:63 ~ useEffect ~ targetElement:",
-			targetElement
-		);
-
 		if (targetElement) {
 			targetElement.scrollIntoView({ behavior: "smooth" });
 		}

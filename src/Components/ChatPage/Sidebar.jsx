@@ -1,6 +1,7 @@
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
+import UploadIcon from "@mui/icons-material/Upload";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { Button } from "@mui/material";
 import Divider from "@mui/material/Divider";
@@ -13,9 +14,30 @@ import Toolbar from "@mui/material/Toolbar";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import SideBarTemplate from "./SideBarTemplate";
+import { uploadPDF } from "../../assets/js/uploadPDF";
 
 export default function Sidebar() {
 	const navigate = useNavigate();
+	const fileInputRef = React.useRef(null);
+
+	const handleFileUpload = () => {
+		console.log("clicked");
+		fileInputRef.current.click();
+	};
+
+	const handleFileChange = async (e) => {
+		const selectedFile = e.target.files[0];
+		console.log("🚀 ~ file: Sidebar.jsx:30 ~ handleFileChange ~ selectedFile:", selectedFile)
+		if (selectedFile) {
+			const pdf = await uploadPDF(selectedFile);
+			console.log(
+				"🚀 ~ file: Sidebar.jsx:31 ~ handleFileChange ~ pdf:",
+				pdf
+			);
+		} else {
+			console.error("No file selected");
+		}
+	};
 
 	const drawer = (
 		<div>
@@ -73,9 +95,30 @@ export default function Sidebar() {
 					paddingBottom: 2,
 				}}
 			>
+				<ListItem>
+					<input
+						type="file"
+						accept=".pdf"
+						style={{ display: "none" }}
+						ref={fileInputRef}
+						onChange={handleFileChange}
+					/>
+					<ListItemButton
+						sx={{
+							borderRadius: 2,
+							bgcolor: "var(--accent-color-20)",
+						}}
+						onClick={handleFileUpload}
+					>
+						<ListItemIcon sx={{ minWidth: "2.5rem" }}>
+							<UploadIcon />
+						</ListItemIcon>
+						<ListItemText primary="Upload PDF" />
+					</ListItemButton>
+				</ListItem>
 				<Divider
 					sx={{
-						mb: 1,
+						my: 1,
 					}}
 				/>
 				<ListItem>

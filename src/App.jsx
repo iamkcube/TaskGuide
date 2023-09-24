@@ -5,7 +5,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ChatPage from "./Components/ChatPage/ChatPage";
 import Error404 from "./Components/Error404";
-import LandingPage from "./Components/LandingPage";
+import LandingPage from "./Components/LandingPage/LandingPage";
 
 const drawerWidth = 240;
 export const AppContext = createContext(null);

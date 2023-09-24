@@ -55,10 +55,21 @@ export default function Chat() {
 	};
 
 	useEffect(() => {
-		window.scrollTo({
-			top: document.body.scrollHeight,
-			behavior: "smooth", // Use 'auto' for instant scrolling
-		});
+		// window.scrollTo({
+		// 	top: document.body.scrollHeight,
+		// 	behavior: "smooth", // Use 'auto' for instant scrolling
+		// });
+		const targetElement = document.querySelector(
+			".message-item:last-child"
+		);
+		console.log(
+			"🚀 ~ file: Chat.jsx:63 ~ useEffect ~ targetElement:",
+			targetElement
+		);
+
+		if (targetElement) {
+			targetElement.scrollIntoView({ behavior: "smooth" });
+		}
 	}, [messages]);
 
 	return (
@@ -117,6 +128,9 @@ export default function Chat() {
 						backgroundColor: prefersDarkMode ? "#272727" : "#eee",
 						borderRadius: 1,
 						boxShadow: "var(--box-shadow)",
+						animation:
+							loading &&
+							"1.5s ease-in-out infinite alternate boxShadow;",
 						"& .MuiOutlinedInput-root": {
 							"& fieldset": {
 								borderColor: "var(--accent-color-20)",

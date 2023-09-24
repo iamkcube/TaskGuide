@@ -10,6 +10,12 @@
 		0px 0px 17.9px hsla(var(--accent-color-prefix), 0.075),
 		0px 0px 33.4px hsla(var(--accent-color-prefix), 0.1),
 		0px 0px 80px hsla(var(--accent-color-prefix), 0.20);
+	--box-shadow-2x: 0px 0px 2.2px hsla(var(--accent-color-prefix), 0.05),
+		0px 0px 5.3px hsla(var(--accent-color-prefix), 0.1),
+		0px 0px 10px hsla(var(--accent-color-prefix), 0.125),
+		0px 0px 17.9px hsla(var(--accent-color-prefix), 0.15),
+		0px 0px 33.4px hsla(var(--accent-color-prefix), 0.2),
+		0px 0px 80px hsla(var(--accent-color-prefix), 0.4);
 }
 
 body

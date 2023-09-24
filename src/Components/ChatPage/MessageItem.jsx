@@ -14,6 +14,7 @@ export default function MessageItem({ user, text, isUser }) {
 				backgroundColor: isUser && "var(--accent-color-20)",
 				borderRadius: 2,
 			}}
+			className="message-item"
 		>
 			<ListItemIcon sx={{ minWidth: 2 }}>
 				<Avatar

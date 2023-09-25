@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 
 const Projects = () => {
   const [email, setEmail] = useState("");
+  const [name1, setname1] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
   const { handleSnackbarOpen } = React.useContext(AppContext);
@@ -23,13 +24,20 @@ const Projects = () => {
     setPassword(e.target.value);
   };
 
+  const handleName1Change = (e) => {
+    setname1(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // You can add your login logic here
     handleSnackbarOpen("Login Successful");
     console.log("Email/ID:", email);
     console.log("Password:", password);
-    navigate("/chat");
+    console.log("Name:", name1);
+    navigate("/chat", {
+      state: { name: name1 },
+    });
   };
 
   const [name, setName] = useState("");
@@ -63,7 +71,9 @@ const Projects = () => {
     console.log("Reenter Password:", reenterPassword);
     console.log("Designation:", designation);
     console.log("Purpose:", purpose);
-    navigate("/chat");
+	navigate("/chat", {
+		state: { name: name },
+	  });
   };
 
   return (
@@ -115,6 +125,17 @@ const Projects = () => {
                               onSubmit={handleSubmit}
                             >
                               <div className="form-group">
+                                <label className="label" htmlFor="name">
+                                  Name:
+                                </label>
+                                <input
+                                  type="text"
+                                  id="name"
+                                  className="input"
+                                  value={name1}
+                                  onChange={handleName1Change}
+                                  required
+                                />
                                 <label className="label" htmlFor="email">
                                   Email/ID:
                                 </label>

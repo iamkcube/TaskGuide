@@ -1,4 +1,5 @@
 export async function uploadPDF(file) {
+	console.log("🚀 ~ file: uploadPDF.js:2 ~ uploadPDF ~ file:", file)
 	const formData = new FormData();
 	formData.append("pdfFile", file);
 

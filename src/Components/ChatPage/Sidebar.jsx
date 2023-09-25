@@ -34,6 +34,7 @@ export default function Sidebar() {
 				"🚀 ~ file: Sidebar.jsx:31 ~ handleFileChange ~ pdf:",
 				pdf
 			);
+			console.log(pdf);
 		} else {
 			console.error("No file selected");
 		}

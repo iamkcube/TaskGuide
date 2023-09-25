@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AppContext } from "../App";
 import { AppBar, Toolbar, IconButton, Typography } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 export default function Topbar() {
 	const { drawerWidth, mobileOpen, handleDrawerToggle } =
@@ -26,15 +27,21 @@ export default function Topbar() {
 				>
 					<MenuIcon />
 				</IconButton>
-				<Typography
-					variant="h1"
-					noWrap
-					component="div"
-					fontSize="2rem"
-					fontWeight="bold"
-				>
-					TaskGuide
-				</Typography>
+				<Link to="../" style={{ textDecoration: "none" }}>
+					<Typography
+						variant="h1"
+						noWrap
+						component="div"
+						fontSize="2rem"
+						fontWeight="bold"
+						sx={{
+							color: "white",
+
+						}}
+					>
+						TaskGuide
+					</Typography>
+				</Link>
 			</Toolbar>
 		</AppBar>
 	);

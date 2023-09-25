@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import SideBarTemplate from "./SideBarTemplate";
 import { uploadPDF } from "../../assets/js/uploadPDF";
 import { AppContext } from "../../App";
+import { logoutUser } from "../../assets/js/logout";
 
 export default function Sidebar() {
 	const navigate = useNavigate();
@@ -49,6 +50,23 @@ export default function Sidebar() {
 		} else {
 			handleSnackbarOpen("Couldn't Upload. Try again later.");
 			console.error("No file selected");
+		}
+	};
+
+	const handleLogout = async (e) => {
+		e.preventDefault();
+
+		try {
+			const user = await logoutUser();
+			console.log(
+				"🚀 ~ file: Projects.jsx:42 ~ handleSubmit ~ user:",
+				user
+			);
+			handleSnackbarOpen("Logout Successful");
+			navigate("../");
+		} catch (error) {
+			handleSnackbarOpen("Login Unsuccessful");
+			console.error("Error during lgout:", error.message);
 		}
 	};
 
@@ -153,6 +171,7 @@ export default function Sidebar() {
 							borderRadius: 2,
 							bgcolor: "var(--accent-color-20)",
 						}}
+						onClick={handleLogout}
 					>
 						<ListItemIcon sx={{ minWidth: "2.5rem" }}>
 							<LogoutIcon />

@@ -10,7 +10,7 @@ export async function signupUser(email, password) {
 		);
 		const user = userCredential.user;
 		console.log("🚀 ~ file: signup.js:10 ~ .then ~ user:", user);
-		return user; // Return the user here, inside the try block
+		return user; 
 	} catch (error) {
 		const errorCode = error.code;
 		console.error(
@@ -22,6 +22,6 @@ export async function signupUser(email, password) {
 			"🚀 ~ file: signup.js:18 ~ signupUser ~ errorMessage:",
 			errorMessage
 		);
-		throw error; // Re-throw the error to be caught elsewhere if needed
+		throw error; 
 	}
 }

@@ -1,18 +1,11 @@
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
-export async function loginUser(email, password) {
+export async function logoutUser() {
 	try {
-
-		const userCredential = await signInWithEmailAndPassword(
-			auth,
-			email,
-			password
-		);
-		const user = userCredential.user;
-		console.log("🚀 ~ file: signup.js:10 ~ .then ~ user:", user);
-		return user;
-		
+		const userCredential = await signOut(auth);
+		console.log("🚀 ~ file: logout.js:7 ~ signoutUser ~ userCredential:", userCredential)
+		return userCredential;
 	} catch (error) {
 		const errorCode = error.code;
 		console.error(

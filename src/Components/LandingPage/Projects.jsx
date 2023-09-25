@@ -8,6 +8,7 @@ import TrackVisibility from "react-on-screen";
 import * as React from "react";
 import { AppContext } from "../../App";
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../assets/js/login";
 import { signupUser } from "../../assets/js/signup";
 
 const Projects = () => {
@@ -29,16 +30,30 @@ const Projects = () => {
 		setname1(e.target.value);
 	};
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
-		// You can add your login logic here
-		handleSnackbarOpen("Login Successful");
+
 		console.log("Email/ID:", email);
 		console.log("Password:", password);
 		console.log("Name:", name1);
-		navigate("/chat", {
-			state: { name: name1 },
-		});
+
+		try {
+			const user = await loginUser(email, password);
+			console.log(
+				"🚀 ~ file: Projects.jsx:42 ~ handleSubmit ~ user:",
+				user
+			);
+			if (user) {
+				handleSnackbarOpen("Login Successful");
+
+				navigate("/chat", {
+					state: { name: name },
+				});
+			}
+		} catch (error) {
+			handleSnackbarOpen("Login Unsuccessful");
+			console.error("Error during user registration:", error.message);
+		}
 	};
 
 	const [name, setName] = useState("");
@@ -63,29 +78,33 @@ const Projects = () => {
 	};
 
 	const handleSubmitsign = async (e) => {
-    e.preventDefault();
-    handleSnackbarOpen('Signup Successful');
-    // You can add your signup logic here
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
-    console.log('Reenter Password:', reenterPassword);
-    console.log('Designation:', designation);
-    console.log('Purpose:', purpose);
-  
-    try {
-      const user = await signupUser(email, password);
-      console.log('🚀 ~ file: Projects.jsx:79 ~ handleSubmitsign ~ user:', user);
-      if (user) {
-        navigate('/chat', {
-          state: { name: name },
-        });
-      }
-    } catch (error) {
-      console.error('Error during user registration:', error.message);
-    }
-  };
-  
+		e.preventDefault();
+		// You can add your signup logic here
+		console.log("Name:", name);
+		console.log("Email:", email);
+		console.log("Password:", password);
+		console.log("Reenter Password:", reenterPassword);
+		console.log("Designation:", designation);
+		console.log("Purpose:", purpose);
+
+		try {
+			const user = await signupUser(email, password);
+			console.log(
+				"🚀 ~ file: Projects.jsx:79 ~ handleSubmitsign ~ user:",
+				user
+			);
+			if (user) {
+				handleSnackbarOpen("Signup Successful");
+				navigate("/chat", {
+					state: { name: name },
+				});
+			}
+		} catch (error) {
+			handleSnackbarOpen("Signup Unsuccessful");
+			console.error("Error during user registration:", error.message);
+		}
+	};
+
 	return (
 		<section
 			className="project"

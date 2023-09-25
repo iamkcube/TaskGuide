@@ -17,7 +17,7 @@ export default function Chat({ name }) {
 	const [loading, setLoading] = useState(false);
 	const [messages, setMessages] = useState([
 		{
-			text: "Hemlo, how can I help you!?",
+			text: "Hello, how can I help you!?",
 			user: "Chatbot",
 			isUser: false,
 		},

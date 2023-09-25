@@ -12,7 +12,7 @@ import { AppContext } from "../../App";
 import MessageItem from "./MessageItem";
 import { getResponse } from "../../assets/js/getResponse";
 
-export default function Chat() {
+export default function Chat({ name }) {
 	const Mobile = useMediaQuery("(min-width:600px)");
 	const [loading, setLoading] = useState(false);
 	const [messages, setMessages] = useState([
@@ -32,7 +32,7 @@ export default function Chat() {
 		setLoading(true);
 		const newMessage = {
 			text: question,
-			user: "Disha",
+			user: name,
 			isUser: true,
 		};
 		setMessages((prevMessages) => {

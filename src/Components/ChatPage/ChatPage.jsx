@@ -1,12 +1,13 @@
 import { Box } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
+import { useLocation } from "react-router-dom";
+import Topbar from "../Topbar";
 import Chat from "./Chat";
 import Sidebar from "./Sidebar";
-import Topbar from "../Topbar";
-import { Snackbar } from "@mui/material";
-import { Alert } from "@mui/material";
 
 export default function ChatPage() {
+	const { state } = useLocation();
+
 	return (
 		<Box
 			sx={{
@@ -23,7 +24,7 @@ export default function ChatPage() {
 				}}
 			>
 				<Sidebar />
-				<Chat />
+				<Chat name={state ? state.name : "User"} />
 			</Box>
 		</Box>
 	);

@@ -49,8 +49,9 @@ const Projects = () => {
 			if (user) {
 				setLoading(false);
 				handleSnackbarOpen("Login Successful");
+				console.log("🚀 ~ file: Projects.jsx:54 ~ handleSubmit ~ name:", name)
 				navigate("/chat", {
-					state: { name: name },
+					state: { name: name1 },
 				});
 			}
 		} catch (error) {
@@ -101,6 +102,7 @@ const Projects = () => {
 			if (user) {
 				setLoading(false);
 				handleSnackbarOpen("Signup Successful");
+				console.log("🚀 ~ file: Projects.jsx:106 ~ handleSubmitsign ~ name:", name)
 				navigate("/chat", {
 					state: { name: name },
 				});

@@ -10,11 +10,14 @@ import { AppContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../assets/js/login";
 import { signupUser } from "../../assets/js/signup";
+import { CircularProgress } from "@mui/material";
 
 const Projects = () => {
 	const [email, setEmail] = useState("");
 	const [name1, setname1] = useState("");
 	const [password, setPassword] = useState("");
+
+	const [loading, setLoading] = useState(false);
 	const navigate = useNavigate();
 	const { handleSnackbarOpen } = React.useContext(AppContext);
 
@@ -32,7 +35,7 @@ const Projects = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
+		setLoading(true);
 		console.log("Email/ID:", email);
 		console.log("Password:", password);
 		console.log("Name:", name1);
@@ -44,13 +47,14 @@ const Projects = () => {
 				user
 			);
 			if (user) {
+				setLoading(false);
 				handleSnackbarOpen("Login Successful");
-
 				navigate("/chat", {
 					state: { name: name },
 				});
 			}
 		} catch (error) {
+			setLoading(false);
 			handleSnackbarOpen("Login Unsuccessful");
 			console.error("Error during user registration:", error.message);
 		}
@@ -79,6 +83,7 @@ const Projects = () => {
 
 	const handleSubmitsign = async (e) => {
 		e.preventDefault();
+		setLoading(true);
 		// You can add your signup logic here
 		console.log("Name:", name);
 		console.log("Email:", email);
@@ -94,12 +99,14 @@ const Projects = () => {
 				user
 			);
 			if (user) {
+				setLoading(false);
 				handleSnackbarOpen("Signup Successful");
 				navigate("/chat", {
 					state: { name: name },
 				});
 			}
 		} catch (error) {
+			setLoading(false);
 			handleSnackbarOpen("Signup Unsuccessful");
 			console.error("Error during user registration:", error.message);
 		}
@@ -235,8 +242,29 @@ const Projects = () => {
 															<button
 																type="submit"
 																className="login-button"
+																style={{
+																	display:
+																		"grid",
+																	placeItems:
+																		"center",
+																	padding:
+																		"0.5em 0",
+																	fontSize:
+																		"1.25rem",
+																	fontWeight:
+																		"bold",
+																}}
 															>
-																Login
+																{loading ? (
+																	<CircularProgress
+																		size="1.5rem"
+																		sx={{
+																			color: "white",
+																		}}
+																	/>
+																) : (
+																	"Login"
+																)}
 															</button>
 														</form>
 													</div>
@@ -397,8 +425,29 @@ const Projects = () => {
 															<button
 																type="submit"
 																className="signup-button"
+																style={{
+																	display:
+																		"grid",
+																	placeItems:
+																		"center",
+																	padding:
+																		"0.5em 0",
+																	fontSize:
+																		"1.25rem",
+																	fontWeight:
+																		"bold",
+																}}
 															>
-																Sign Up
+																{loading ? (
+																	<CircularProgress
+																		size="1.5rem"
+																		sx={{
+																			color: "white",
+																		}}
+																	/>
+																) : (
+																	"Sign Up"
+																)}
 															</button>
 														</form>
 													</div>

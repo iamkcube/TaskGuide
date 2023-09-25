@@ -3,7 +3,7 @@ import ChatIcon from "@mui/icons-material/Chat";
 import SettingsIcon from "@mui/icons-material/Settings";
 import UploadIcon from "@mui/icons-material/Upload";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Button } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
 import Divider from "@mui/material/Divider";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -22,6 +22,7 @@ export default function Sidebar() {
 	const navigate = useNavigate();
 	const fileInputRef = React.useRef(null);
 	const { handleSnackbarOpen } = React.useContext(AppContext);
+	const [loading, setLoading] = React.useState(false);
 
 	const handleFileUpload = () => {
 		console.log("clicked");
@@ -30,6 +31,7 @@ export default function Sidebar() {
 
 	const handleFileChange = async (e) => {
 		const selectedFile = e.target.files[0];
+		setLoading(true);
 		console.log(
 			"🚀 ~ file: Sidebar.jsx:30 ~ handleFileChange ~ selectedFile:",
 			selectedFile
@@ -51,6 +53,7 @@ export default function Sidebar() {
 			handleSnackbarOpen("Couldn't Upload. Try again later.");
 			console.error("No file selected");
 		}
+		setLoading(false);
 	};
 
 	const handleLogout = async (e) => {
@@ -141,10 +144,21 @@ export default function Sidebar() {
 						}}
 						onClick={handleFileUpload}
 					>
-						<ListItemIcon sx={{ minWidth: "2.5rem" }}>
-							<UploadIcon />
-						</ListItemIcon>
-						<ListItemText primary="Upload PDF" />
+						{loading ? (
+							<>
+								<ListItemIcon sx={{ minWidth: "2.5rem" }}>
+									<CircularProgress size="1.5rem" />
+								</ListItemIcon>
+								<ListItemText primary="Uploading..." />
+							</>
+						) : (
+							<>
+								<ListItemIcon sx={{ minWidth: "2.5rem" }}>
+									<UploadIcon />
+								</ListItemIcon>
+								<ListItemText primary="Upload PDF" />
+							</>
+						)}
 					</ListItemButton>
 				</ListItem>
 				<Divider

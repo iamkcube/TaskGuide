@@ -95,7 +95,18 @@ const Banner = () => {
 										specialized field.
 									</p>
 									<button
-										onClick={() => console.log("connect")}
+										onClick={() => {
+											const targetElement =
+												document.getElementById(
+													"footer"
+												);
+
+											if (targetElement) {
+												targetElement.scrollIntoView({
+													behavior: "smooth",
+												});
+											}
+										}}
 									>
 										Let's Connect{" "}
 										<ArrowRightCircle size={25} />

@@ -1,8 +1,8 @@
 export async function getResponse(question) {
 	try {
 		const data = JSON.stringify({ question: question });
-		// const url = `https://taskguide.onrender.com/api/question`;
-		const url = `http://127.0.0.1:5000/api/question`;
+		const url = `https://taskguide.onrender.com/api/question`;
+		// const url = `http://127.0.0.1:5000/api/question`;
 
 		const response = await fetch(url, {
 			method: "POST",

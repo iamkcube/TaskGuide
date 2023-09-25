@@ -18,14 +18,15 @@ export default function MessageItem({ user, text, isUser }) {
 		>
 			<ListItemIcon sx={{ minWidth: 2 }}>
 				<Avatar
-					alt="Profile Pic"
+					alt={user}
 					src={
 						isUser
-							? "https://c.ndtvimg.com/2022-05/mbbokrb8_disha_625x300_12_May_22.jpg"
+							? null
 							: "https://wallpapers.com/images/hd/cute-girl-vector-art-profile-picture-jhbu3wt713zj2bti.jpg"
 					}
 					sx={{
 						marginBlock: "0.4rem",
+						bgcolor: "var(--accent-color)"
 					}}
 				/>
 			</ListItemIcon>

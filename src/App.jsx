@@ -1,6 +1,6 @@
-import { CssBaseline, useMediaQuery } from "@mui/material";
+import { Alert, CssBaseline, Snackbar, useMediaQuery } from "@mui/material";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import React, { createContext } from "react";
+import React, { createContext, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import ChatPage from "./Components/ChatPage/ChatPage";
@@ -40,10 +40,26 @@ function App() {
 	});
 
 	// For responsive drawer on mobile
-	const [mobileOpen, setMobileOpen] = React.useState(false);
+	const [mobileOpen, setMobileOpen] = useState(false);
 
 	const handleDrawerToggle = () => {
 		setMobileOpen(!mobileOpen);
+	};
+
+	const [snackbarOpen, setSnackbarOpen] = useState(false);
+	const [snackbarText, setSnackbarText] = useState("");
+
+	const handleSnackbarOpen = (text) => {
+		setSnackbarText(text);
+		setSnackbarOpen(true);
+	};
+
+	const handleSnackbarClose = (event, reason) => {
+		if (reason === "clickaway") {
+			return;
+		}
+
+		setSnackbarOpen(false);
 	};
 
 	// For useContext passing items
@@ -52,6 +68,7 @@ function App() {
 		drawerWidth,
 		mobileOpen,
 		handleDrawerToggle,
+		handleSnackbarOpen,
 	};
 
 	return (
@@ -74,6 +91,19 @@ function App() {
 						/>
 					</Routes>
 				</BrowserRouter>
+				<Snackbar
+					open={snackbarOpen}
+					autoHideDuration={6000}
+					onClose={handleSnackbarClose}
+				>
+					<Alert
+						onClose={handleSnackbarClose}
+						icon={false}
+						sx={{ width: "100%", bgcolor: "white", color: "black" }}
+					>
+						{snackbarText}
+					</Alert>
+				</Snackbar>
 			</AppContext.Provider>
 		</ThemeProvider>
 	);

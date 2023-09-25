@@ -1,8 +1,10 @@
 import { Box } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import Chat from "./Chat";
 import Sidebar from "./Sidebar";
 import Topbar from "../Topbar";
+import { Snackbar } from "@mui/material";
+import { Alert } from "@mui/material";
 
 export default function ChatPage() {
 	return (
@@ -11,7 +13,6 @@ export default function ChatPage() {
 				display: "grid",
 				gridTemplateRows: "auto 1fr",
 				minHeight: "100svh",
-
 			}}
 		>
 			<Topbar />

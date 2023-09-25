@@ -3,7 +3,7 @@ export async function getResponse(question) {
 		const data = JSON.stringify({ question: question });
 
 		const response = await fetch(
-			"https://taskguide.onrender.com/api/question",
+			"http://127.0.0.1:5000/api/question",
 			{
 				method: "POST",
 				headers: {

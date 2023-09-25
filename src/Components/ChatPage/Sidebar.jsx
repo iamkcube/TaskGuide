@@ -15,10 +15,12 @@ import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import SideBarTemplate from "./SideBarTemplate";
 import { uploadPDF } from "../../assets/js/uploadPDF";
+import { AppContext } from "../../App";
 
 export default function Sidebar() {
 	const navigate = useNavigate();
 	const fileInputRef = React.useRef(null);
+	const { handleSnackbarOpen } = React.useContext(AppContext);
 
 	const handleFileUpload = () => {
 		console.log("clicked");
@@ -27,15 +29,25 @@ export default function Sidebar() {
 
 	const handleFileChange = async (e) => {
 		const selectedFile = e.target.files[0];
-		console.log("🚀 ~ file: Sidebar.jsx:30 ~ handleFileChange ~ selectedFile:", selectedFile)
+		console.log(
+			"🚀 ~ file: Sidebar.jsx:30 ~ handleFileChange ~ selectedFile:",
+			selectedFile
+		);
 		if (selectedFile) {
-			const pdf = await uploadPDF(selectedFile);
-			console.log(
-				"🚀 ~ file: Sidebar.jsx:31 ~ handleFileChange ~ pdf:",
-				pdf
-			);
-			console.log(pdf);
+			try {
+				const pdf = await uploadPDF(selectedFile);
+				console.log(
+					"🚀 ~ file: Sidebar.jsx:31 ~ handleFileChange ~ pdf:",
+					pdf
+				);
+				console.log(pdf);
+				handleSnackbarOpen("Uploaded");
+			} catch (error) {
+				handleSnackbarOpen("Couldn't Upload. Try again later.");
+				console.error("Couldn't Upload");
+			}
 		} else {
+			handleSnackbarOpen("Couldn't Upload. Try again later.");
 			console.error("No file selected");
 		}
 	};
